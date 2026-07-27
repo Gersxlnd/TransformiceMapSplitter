@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Map Splitter — Transformice</title>
+<link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+<div class="page">
+  <span class="kicker">🧀 a transformice utility</span>
+
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Paste. Split. Copy.</span>
+      <h1>Map Splitter</h1>
+      <p class="subtitle">Paste the list exported from the game and the site groups everything by player and by category (P22, P41, and any others), joining the codes without the @.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <span class="stat-card-title" id="hero-title">Summary</span>
+        <span class="status-dot" id="status-dot"></span>
+      </div>
+      <div class="stat-row"><span class="label">Players</span><span class="value" id="hero-players">—</span></div>
+      <div class="stat-row"><span class="label">Total maps</span><span class="value" id="hero-maps">—</span></div>
+      <div class="stat-row"><span class="label">Categories</span><span class="value" id="hero-categories">—</span></div>
+      <div class="stat-row"><span class="label">Skipped lines</span><span class="value" id="hero-ignored">—</span></div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">01</span> Paste list</h2>
+    <div class="card input-card">
+      <label class="field-label" for="input-list">Pasted list</label>
+      <div class="mode-row">
+        <span class="mode-caption">Group by</span>
+        <div class="mode-toggle" role="radiogroup" aria-label="Grouping mode">
+          <button type="button" class="mode-btn active" data-mode="player" role="radio" aria-checked="true">Player + category</button>
+          <button type="button" class="mode-btn" data-mode="category" role="radio" aria-checked="false">Category only</button>
+        </div>
+      </div>
+      <textarea id="input-list" placeholder="Ghost#6398 - @7942702 - 0 - 100% - P22
+Ghost#6398 - @7942764 - 0 - 100% - P22
+Ghost#6398 - @7942778 - 0 - 100% - P41"></textarea>
+      <div class="actions-row">
+        <button class="btn-primary" id="split-btn">Split</button>
+        <span class="status-text" id="status-text">Waiting for list…</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="tiles-section" style="display:none;">
+    <h2 class="section-title"><span class="section-num">02</span> Overall summary</h2>
+    <div class="tiles">
+      <div class="tile"><span class="tile-num" id="tile-players">0</span><span class="tile-label">players</span></div>
+      <div class="tile"><span class="tile-num" id="tile-maps">0</span><span class="tile-label">total maps</span></div>
+      <div class="tile"><span class="tile-num" id="tile-categories">0</span><span class="tile-label">categories</span></div>
+      <div class="tile"><span class="tile-num" id="tile-ignored">0</span><span class="tile-label">skipped lines</span></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">03</span> <span id="results-heading">Results by player</span></h2>
+    <div id="results">
+      <p class="empty-hint">Grouped results by player and category will appear here.</p>
+    </div>
+  </section>
+
+  <footer>Map codes appear without the @, comma-separated, in the order they showed up in the list.</footer>
+</div>
+
+<script src="script/script.js"></script>
+</body>
+</html>
