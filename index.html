@@ -4,12 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Map Splitter — Transformice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style/style.css" />
 </head>
 <body>
-<div class="page">
-  <span class="kicker">🧀 a transformice utility</span>
 
+<header class="topbar">
+  <span class="topbar__crumb">🧀 a transformice utility</span>
+  <nav class="topbar__nav">
+    <a href="index.html" class="is-active">Splitter</a>
+    <a href="more.html">Compare maps</a>
+  </nav>
+</header>
+
+<div class="page">
   <div class="hero">
     <div class="hero-copy">
       <span class="eyebrow">Paste. Split. Copy.</span>
@@ -69,7 +79,7 @@ Ghost#6398 - @7942778 - 0 - 100% - P41"></textarea>
     </div>
   </section>
 
-  <footer>Map codes appear without the @, comma-separated, in the order they showed up in the list.</footer>
+  <footer class="site-footer">Map codes appear without the @, comma-separated, in the order they showed up in the list.</footer>
 </div>
 
 <script src="script/script.js"></script>

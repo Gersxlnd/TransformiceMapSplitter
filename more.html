@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compare Maps — Transformice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <span class="topbar__crumb">🧀 a transformice utility</span>
+  <nav class="topbar__nav">
+    <a href="index.html">Splitter</a>
+    <a href="more.html" class="is-active">Compare maps</a>
+  </nav>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Upload. Compare. Copy.</span>
+      <h1>Compare Maps</h1>
+      <p class="subtitle">Upload two files (CSV and/or TXT) and find which map codes show up in both — repeated maps — and which only show up in one of them — not repeated.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <span class="stat-card-title">Summary</span>
+        <span class="status-dot" id="status-dot"></span>
+      </div>
+      <div class="stat-row"><span class="label">File 1 maps</span><span class="value" id="stat-file1">—</span></div>
+      <div class="stat-row"><span class="label">File 2 maps</span><span class="value" id="stat-file2">—</span></div>
+      <div class="stat-row"><span class="label">Repeated</span><span class="value" id="stat-repeated">—</span></div>
+      <div class="stat-row"><span class="label">Not repeated</span><span class="value" id="stat-unique">—</span></div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">01</span> Upload files</h2>
+    <div class="card input-card">
+      <div class="upload-grid">
+        <div class="file-drop">
+          <label class="file-drop__label" for="file1">File 1 (.csv or .txt)</label>
+          <input type="file" id="file1" accept=".csv,.txt,text/csv,text/plain" />
+          <span class="file-drop__name" id="file1-name">No file chosen</span>
+        </div>
+        <div class="file-drop">
+          <label class="file-drop__label" for="file2">File 2 (.csv or .txt)</label>
+          <input type="file" id="file2" accept=".csv,.txt,text/csv,text/plain" />
+          <span class="file-drop__name" id="file2-name">No file chosen</span>
+        </div>
+      </div>
+      <div class="actions-row">
+        <button class="btn-primary" id="compare-btn" disabled>Compare</button>
+        <span class="status-text" id="compare-status">Choose both files to compare.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">02</span> Results</h2>
+    <div id="compare-results">
+      <p class="empty-hint">Repeated and not-repeated maps will appear here.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">A map counts as repeated when its code shows up in both files, no matter what player or category it's listed under.</footer>
+</div>
+
+<script src="script/compare.js"></script>
+</body>
+</html>
