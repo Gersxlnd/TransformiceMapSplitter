@@ -346,6 +346,80 @@ textarea:focus-visible, button:focus-visible, .copy-btn:focus-visible {
   filter: none;
 }
 
+.btn-secondary {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px dashed var(--line);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold-soft); }
+
+.list-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list-slot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.list-slot__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.list-slot__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.list-slot__remove {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.list-slot__remove:hover { border-color: var(--gold); color: var(--gold-soft); }
+
+.list-slot .list-slot__textarea {
+  min-height: 120px;
+}
+
+.mode-toggle.small .mode-btn {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.74rem;
+}
+
 .actions-row { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
 
 .btn-primary {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Merge Map List — Transformice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <span class="topbar__crumb">🧀 a transformice utility</span>
+  <nav class="topbar__nav">
+    <a href="index.html">Splitter</a>
+    <a href="more.html">Compare maps</a>
+    <a href="merge.html" class="is-active">Merge map list</a>
+  </nav>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Paste or upload. Merge. Copy.</span>
+      <h1>Merge Map List</h1>
+      <p class="subtitle">Combine two or more lists into one, with duplicate map codes removed. Each list can be pasted or uploaded, and they don't need to match the same format.</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-card-head">
+        <span class="stat-card-title">Summary</span>
+        <span class="status-dot" id="status-dot"></span>
+      </div>
+      <div class="stat-row"><span class="label">Lists merged</span><span class="value" id="stat-lists">—</span></div>
+      <div class="stat-row"><span class="label">Maps read</span><span class="value" id="stat-raw">—</span></div>
+      <div class="stat-row"><span class="label">Unique maps</span><span class="value" id="stat-unique">—</span></div>
+      <div class="stat-row"><span class="label">Duplicates removed</span><span class="value" id="stat-dupes">—</span></div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">01</span> Lists to merge</h2>
+    <div class="card input-card">
+      <div class="list-slots" id="list-slots">
+        <div class="list-slot" data-slot-id="1">
+          <div class="list-slot__head">
+            <span class="list-slot__title">List 1</span>
+            <div class="mode-toggle small" role="radiogroup" aria-label="List 1 input mode">
+              <button type="button" class="mode-btn active" data-input-mode="paste">Paste text</button>
+              <button type="button" class="mode-btn" data-input-mode="upload">Upload file</button>
+            </div>
+          </div>
+          <textarea class="list-slot__textarea" placeholder="Paste a map list here..."></textarea>
+          <div class="file-drop list-slot__filedrop" hidden>
+            <input type="file" class="list-slot__fileinput" accept=".csv,.txt,text/csv,text/plain" />
+            <span class="file-drop__name">No file chosen</span>
+          </div>
+        </div>
+
+        <div class="list-slot" data-slot-id="2">
+          <div class="list-slot__head">
+            <span class="list-slot__title">List 2</span>
+            <div class="mode-toggle small" role="radiogroup" aria-label="List 2 input mode">
+              <button type="button" class="mode-btn active" data-input-mode="paste">Paste text</button>
+              <button type="button" class="mode-btn" data-input-mode="upload">Upload file</button>
+            </div>
+          </div>
+          <textarea class="list-slot__textarea" placeholder="Paste a map list here..."></textarea>
+          <div class="file-drop list-slot__filedrop" hidden>
+            <input type="file" class="list-slot__fileinput" accept=".csv,.txt,text/csv,text/plain" />
+            <span class="file-drop__name">No file chosen</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-secondary" id="add-list-btn">+ Add another list</button>
+
+      <div class="mode-row">
+        <span class="mode-caption">Output</span>
+        <div class="mode-toggle" role="radiogroup" aria-label="Output mode">
+          <button type="button" class="mode-btn" data-group-mode="flat" role="radio" aria-checked="false">Flat list</button>
+          <button type="button" class="mode-btn active" data-group-mode="grouped" role="radio" aria-checked="true">Player + category</button>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn-primary" id="merge-btn">Merge</button>
+        <span class="status-text" id="merge-status">Add at least one list to merge.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title"><span class="section-num">02</span> <span id="merge-results-heading">Merged results</span></h2>
+    <div id="merge-results">
+      <p class="empty-hint">The merged, duplicate-free list will appear here.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">Maps missing a player or category show up as "No author" / "No category".</footer>
+</div>
+
+<script src="script/utils.js"></script>
+<script src="script/merge.js"></script>
+</body>
+</html>

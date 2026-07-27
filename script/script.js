@@ -50,30 +50,6 @@ function mergeByCategory(players) {
   return merged;
 }
 
-async function copyText(text, btn) {
-  const original = btn.textContent;
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch (e) {
-    const helper = document.createElement('textarea');
-    helper.value = text;
-    helper.style.position = 'fixed';
-    helper.style.opacity = '0';
-    document.body.appendChild(helper);
-    helper.select();
-    try { document.execCommand('copy'); } catch (err) {}
-    document.body.removeChild(helper);
-  }
-  btn.textContent = 'Copied!';
-  setTimeout(() => { btn.textContent = original; }, 1200);
-}
-
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
-}
-
 function setHero(players, ignored, categorySet) {
   const dot = document.getElementById('status-dot');
   const hasData = players.size > 0;
