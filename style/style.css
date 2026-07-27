@@ -306,6 +306,8 @@ textarea:focus-visible, button:focus-visible, .copy-btn:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+.file-drop[hidden] { display: none; }
+
 .file-drop__label { font-size: 0.85rem; font-weight: 600; color: var(--text-dim); }
 
 .file-drop input[type="file"] {
