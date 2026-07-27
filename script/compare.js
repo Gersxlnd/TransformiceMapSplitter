@@ -58,16 +58,10 @@ function renderCodesCard(container, title, codes, emptyMessage) {
 
   const row = document.createElement('div');
   row.className = 'category-row';
-  const line = document.createElement('div');
-  line.className = 'codes-line';
-  const codesText = document.createElement('span');
-  codesText.className = 'codes-text';
-  codesText.textContent = codes.length ? codes.join(', ') : emptyMessage;
-  line.appendChild(codesText);
-  row.appendChild(line);
+  row.appendChild(buildCodesBlock(codes, emptyMessage, { showCopy: false }));
   card.appendChild(row);
-
   container.appendChild(card);
+  setupExpandable(row);
 }
 
 let file1Text = null;

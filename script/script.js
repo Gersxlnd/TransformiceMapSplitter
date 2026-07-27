@@ -63,38 +63,6 @@ function setHero(players, ignored, categorySet) {
   return totalMaps;
 }
 
-function appendCategoryRows(container, categories) {
-  for (const [category, codes] of categories) {
-    const row = document.createElement('div');
-    row.className = 'category-row';
-
-    const head = document.createElement('div');
-    head.className = 'category-head';
-    head.innerHTML = `
-      <span class="left">
-        <span class="pill">${escapeHtml(category)}</span>
-        <span class="count-tag">${codes.length} map(s)</span>
-      </span>
-    `;
-
-    const line = document.createElement('div');
-    line.className = 'codes-line';
-    const codesText = document.createElement('span');
-    codesText.className = 'codes-text';
-    codesText.textContent = codes.join(', ');
-    const copyBtn = document.createElement('button');
-    copyBtn.className = 'copy-btn';
-    copyBtn.textContent = 'Copy';
-    copyBtn.addEventListener('click', () => copyText(codes.join(', '), copyBtn));
-    line.appendChild(codesText);
-    line.appendChild(copyBtn);
-
-    row.appendChild(head);
-    row.appendChild(line);
-    container.appendChild(row);
-  }
-}
-
 let groupMode = 'player';
 
 function render(raw) {

@@ -474,7 +474,7 @@ textarea:focus-visible, button:focus-visible, .copy-btn:focus-visible {
 .tile-label { font-size: 0.84rem; color: var(--text-dim); }
 
 /* ---------- results ---------- */
-#results { display: flex; flex-direction: column; gap: 1.1rem; }
+#results, #compare-results, #merge-results { display: flex; flex-direction: column; gap: 1.1rem; }
 
 .empty-hint {
   text-align: center;
@@ -568,6 +568,43 @@ textarea:focus-visible, button:focus-visible, .copy-btn:focus-visible {
 
 .count-tag { font-size: 0.78rem; color: var(--text-dim); }
 
+.codes-block {
+  position: relative;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+}
+
+.category-row.is-expanded .codes-block { max-height: none; }
+
+.codes-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(33, 56, 63, 0), var(--card));
+  pointer-events: none;
+}
+
+.category-row.is-expanded .codes-fade { display: none; }
+
+.expand-btn {
+  align-self: flex-end;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid var(--line);
+  background: var(--card-soft);
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.expand-btn:hover { border-color: var(--gold); color: var(--gold-soft); }
+
 .codes-line {
   display: flex;
   align-items: flex-start;
@@ -619,5 +656,5 @@ textarea:focus-visible, button:focus-visible, .copy-btn:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn-primary, .status-dot, .mode-btn, .copy-btn, .copy-all-btn, .topbar__nav a { transition: none; }
+  .btn-primary, .status-dot, .mode-btn, .copy-btn, .copy-all-btn, .topbar__nav a, .codes-block, .expand-btn { transition: none; }
 }
