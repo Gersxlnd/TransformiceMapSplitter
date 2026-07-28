@@ -23,9 +23,9 @@
 <div class="page">
   <div class="hero">
     <div class="hero-copy">
-      <span class="eyebrow">Upload. Compare. Copy.</span>
+      <span class="eyebrow">Paste or upload. Compare. Copy.</span>
       <h1>Compare Maps</h1>
-      <p class="subtitle">Upload two files (CSV and/or TXT) and find which map codes show up in both — repeated maps — and which only show up in one of them — not repeated.</p>
+      <p class="subtitle">Paste or upload two lists and find which map codes show up in both — repeated maps — and which only show up in one of them — not repeated.</p>
     </div>
 
     <div class="stat-card">
@@ -43,23 +43,42 @@
   <hr class="divider" />
 
   <section class="block">
-    <h2 class="section-title"><span class="section-num">01</span> Upload files</h2>
+    <h2 class="section-title"><span class="section-num">01</span> Files to compare</h2>
     <div class="card input-card">
-      <div class="upload-grid">
-        <div class="file-drop">
-          <label class="file-drop__label" for="file1">File 1 (.csv or .txt)</label>
-          <input type="file" id="file1" accept=".csv,.txt,text/csv,text/plain" />
-          <span class="file-drop__name" id="file1-name">No file chosen</span>
+      <div class="list-slots" id="compare-slots">
+        <div class="list-slot" data-slot-id="1">
+          <div class="list-slot__head">
+            <span class="list-slot__title">File 1</span>
+            <div class="mode-toggle small" role="radiogroup" aria-label="File 1 input mode">
+              <button type="button" class="mode-btn active" data-input-mode="paste">Paste text</button>
+              <button type="button" class="mode-btn" data-input-mode="upload">Upload file</button>
+            </div>
+          </div>
+          <textarea class="list-slot__textarea" placeholder="Paste a map list here..."></textarea>
+          <div class="file-drop list-slot__filedrop" hidden>
+            <input type="file" class="list-slot__fileinput" accept=".csv,.txt,text/csv,text/plain" />
+            <span class="file-drop__name">No file chosen</span>
+          </div>
         </div>
-        <div class="file-drop">
-          <label class="file-drop__label" for="file2">File 2 (.csv or .txt)</label>
-          <input type="file" id="file2" accept=".csv,.txt,text/csv,text/plain" />
-          <span class="file-drop__name" id="file2-name">No file chosen</span>
+
+        <div class="list-slot" data-slot-id="2">
+          <div class="list-slot__head">
+            <span class="list-slot__title">File 2</span>
+            <div class="mode-toggle small" role="radiogroup" aria-label="File 2 input mode">
+              <button type="button" class="mode-btn active" data-input-mode="paste">Paste text</button>
+              <button type="button" class="mode-btn" data-input-mode="upload">Upload file</button>
+            </div>
+          </div>
+          <textarea class="list-slot__textarea" placeholder="Paste a map list here..."></textarea>
+          <div class="file-drop list-slot__filedrop" hidden>
+            <input type="file" class="list-slot__fileinput" accept=".csv,.txt,text/csv,text/plain" />
+            <span class="file-drop__name">No file chosen</span>
+          </div>
         </div>
       </div>
       <div class="actions-row">
-        <button class="btn-primary" id="compare-btn" disabled>Compare</button>
-        <span class="status-text" id="compare-status">Choose both files to compare.</span>
+        <button class="btn-primary" id="compare-btn">Compare</button>
+        <span class="status-text" id="compare-status">Add content to both lists to compare.</span>
       </div>
     </div>
   </section>

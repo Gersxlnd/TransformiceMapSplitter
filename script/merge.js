@@ -77,39 +77,6 @@ function buildGroupCopyText(name, categories) {
 
 let slotCounter = 2;
 
-function wireSlot(slotEl) {
-  const modeButtons = slotEl.querySelectorAll('.mode-btn[data-input-mode]');
-  const textarea = slotEl.querySelector('.list-slot__textarea');
-  const fileDrop = slotEl.querySelector('.list-slot__filedrop');
-  const fileInput = slotEl.querySelector('.list-slot__fileinput');
-  const fileName = slotEl.querySelector('.file-drop__name');
-  const removeBtn = slotEl.querySelector('.list-slot__remove');
-
-  modeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.classList.contains('active')) return;
-      modeButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const mode = btn.dataset.inputMode;
-      textarea.hidden = mode !== 'paste';
-      fileDrop.hidden = mode !== 'upload';
-    });
-  });
-
-  fileInput.addEventListener('change', async () => {
-    const file = fileInput.files[0];
-    fileName.textContent = file ? file.name : 'No file chosen';
-    slotEl._fileText = file ? await readFileAsText(file) : '';
-  });
-
-  if (removeBtn) {
-    removeBtn.addEventListener('click', () => {
-      slotEl.remove();
-      renumberSlots();
-    });
-  }
-}
-
 function renumberSlots() {
   const slots = document.querySelectorAll('.list-slot');
   slots.forEach((slot, index) => {
@@ -148,14 +115,6 @@ document.getElementById('add-list-btn').addEventListener('click', () => {
   document.getElementById('list-slots').appendChild(slot);
   renumberSlots();
 });
-
-function getSlotText(slotEl) {
-  const activeBtn = slotEl.querySelector('.mode-btn.active');
-  const mode = activeBtn ? activeBtn.dataset.inputMode : 'paste';
-  if (mode === 'upload') return slotEl._fileText || '';
-  const textarea = slotEl.querySelector('.list-slot__textarea');
-  return textarea ? textarea.value : '';
-}
 
 /* ---------- output mode ---------- */
 

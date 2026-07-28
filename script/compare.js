@@ -64,30 +64,29 @@ function renderCodesCard(container, title, codes, emptyMessage) {
   setupExpandable(row);
 }
 
-let file1Text = null;
-let file2Text = null;
-
-function updateCompareButton() {
-  document.getElementById('compare-btn').disabled = !(file1Text && file2Text);
-}
-
-document.getElementById('file1').addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  document.getElementById('file1-name').textContent = file ? file.name : 'No file chosen';
-  file1Text = file ? await readFileAsText(file) : null;
-  updateCompareButton();
-});
-
-document.getElementById('file2').addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  document.getElementById('file2-name').textContent = file ? file.name : 'No file chosen';
-  file2Text = file ? await readFileAsText(file) : null;
-  updateCompareButton();
-});
+document.querySelectorAll('#compare-slots .list-slot').forEach(wireSlot);
 
 document.getElementById('compare-btn').addEventListener('click', () => {
-  const codesA = extractCodes(file1Text);
-  const codesB = extractCodes(file2Text);
+  const slots = document.querySelectorAll('#compare-slots .list-slot');
+  const [slot1, slot2] = slots;
+  const text1 = getSlotText(slot1).trim();
+  const text2 = getSlotText(slot2).trim();
+
+  const statusEl = document.getElementById('compare-status');
+  const resultsEl = document.getElementById('compare-results');
+
+  if (!text1 || !text2) {
+    statusEl.textContent = 'Add content to both lists to compare.';
+    resultsEl.innerHTML = '<p class="empty-hint">Repeated and not-repeated maps will appear here.</p>';
+    document.getElementById('status-dot').classList.remove('active');
+    ['stat-file1', 'stat-file2', 'stat-repeated', 'stat-unique'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
+    return;
+  }
+
+  const codesA = extractCodes(text1);
+  const codesB = extractCodes(text2);
 
   const repeated = [...codesA].filter(c => codesB.has(c));
   const onlyA = [...codesA].filter(c => !codesB.has(c));
@@ -100,11 +99,10 @@ document.getElementById('compare-btn').addEventListener('click', () => {
   document.getElementById('stat-unique').textContent = notRepeated.length;
   document.getElementById('status-dot').classList.add('active');
 
-  const resultsEl = document.getElementById('compare-results');
   resultsEl.innerHTML = '';
   renderCodesCard(resultsEl, '🔁 Repeated maps', repeated, 'No repeated maps found.');
   renderCodesCard(resultsEl, '✅ Not repeated maps', notRepeated, 'No unique maps found.');
 
-  document.getElementById('compare-status').textContent =
+  statusEl.textContent =
     `${codesA.size} + ${codesB.size} map(s) read · ${repeated.length} repeated · ${notRepeated.length} not repeated.`;
 });
